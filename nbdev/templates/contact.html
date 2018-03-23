@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Record a contact</title>
+        <link href="/static/normalize.css" rel="stylesheet" type="text/css">
+        <link href="/static/skeleton.css" rel="stylesheet" type="text/css">
+        <link href="/static/style.css" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+        <div class="container" >
+            <h1>Log human contact</h1>
+            <form id="contact_form" method="POST" action="/contact/create/">
+                <div class="row">
+                    <div class="six columns">
+                        <label for="contact_id">Person contacted</label>
+                        <select class="u-full-width" name="person_id" id="contact_id">
+                            {% for person in people %}
+                            <option value="{{person.id}}">{{person.first_name}} {{person.last_name}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="six columns" >
+                        <label for="contact_result">Result of the contact</label>
+                        <select class="u-full-width" name="type_id" id="contact_result">
+                            {% for type in types %}
+                            <option value="{{type.id}}">{{type.name}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <input class="submit-button button-primary" value="Inform the elders" type="submit">
+            </form>
+        </div>
+    </body>
+</html>

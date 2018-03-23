@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Work with webhooks</title>
+        <link href="/static/normalize.css" rel="stylesheet" type="text/css">
+        <link href="/static/skeleton.css" rel="stylesheet" type="text/css">
+        <link href="/static/style.css" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+        <div class="container" >
+            <h1>Work with webhooks</h1>
+            <p>Create webhooks</p>
+            <h2>{{webhooks|count}} current hooks</h2>
+            <table class="u-full-width">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>URL</th>
+                        <th>Event</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for _id, hook in webhooks %}
+                    <tr>
+                        <td>{{hook['id']}}</td>
+                        <td>{{hook['url']}}</td>
+                        <td>{{hook['event']}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <hr/>
+            <h2>Create</h2>
+            <form id="new_hook_form" method="POST" action="/webhooks/create/">
+                <div class="row">
+                        <label for="hook_url" >Target URL</label>
+                        <input class="u-full-width" name="url" id="hook_url" type="text" />
+                </div>
+                <div class="row">
+                    <label for="hook_event">Event</label>
+                    <select class="u-full-width" id="hook_event" name="event">
+                        <option value="person_created"> Person created</option>
+                        <option value="person_changed"> Person changed </option>
+                        <option value="person_contacted"> Person contacted 	</option>
+                        <option value="person_destroyed"> Person destroyed 	</option>
+                        <option value="person_merged"> Person merged</option>
+                        <option value="donation_succeeded"> Donation succeeded 	</option>
+                        <option value="donation_changed"> Donation changed 	</option>
+                        <option value="donation_canceled"> Donation canceled 	</option>
+                    </select>
+                </div>
+                <input class="submit-button button-primary" value="Create webhook" type="submit">
+            </form>
+        </div>
+    </body>
+</html>

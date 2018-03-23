@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Work with people</title>
+        <link href="/static/normalize.css" rel="stylesheet" type="text/css">
+        <link href="/static/skeleton.css" rel="stylesheet" type="text/css">
+        <link href="/static/style.css" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+        <div class="container" >
+            <h1>Work with people</h1>
+            <p>Create, update, delete people</p>
+            <h2>{{people|count}} current people</h2>
+            <table class="u-full-width">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>First</th>
+                        <th>Last</th>
+                        <th>Notes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for person in people %}
+                    <tr>
+                        <td>{{person['id']}}</td>
+                        <td>{{person['first_name']}}</td>
+                        <td>{{person['last_name']}}</td>
+                        <td>{{person['note']}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <hr/>
+            <h2>Create</h2>
+            <form id="new_user_form" method="POST" action="/people/create/">
+                <div class="row">
+                    <div class="six columns" >
+                        <label for="person_first" >First name</label>
+                        <input class="u-full-width" name="first" id="person_first" type="text" />
+                    </div>
+                    <div class="six columns" >
+                        <label for="person_last" >Last name</label>
+                        <input class="u-full-width" name="last" id="person_last" type="text" />
+                    </div>
+                </div>
+                <div class="row">
+                    <label for="contact_email">Contact's email</label>
+                    <input class="u-full-width" name="email" id="contact_email" type="text"/>
+                </div>
+                <input class="submit-button button-primary" value="Create person" type="submit">
+            </form>
+            <hr/>
+            <h2>Update</h2>
+            <p>Add a note</p>
+            <form id="update_user_form" method="POST" action="/people/update/" >
+                <div class="row" >
+                    <div class="four columns" >
+                        <label for="person_id" >ID</label>
+                        <input class="u-full-width" name="id" id="person_id" type="number" />
+                    </div>
+                </div>
+                <div class="row" >
+                    <div class="eight columns" >
+                        <label for="person_note" >Note</label>
+                        <input class="u-full-width" name="note" id="person_node" type="text" />
+                    </div>
+                </div>
+                <input class="submit-button button-primary" value="Update note" type="submit" >
+            </form>
+            <hr/>
+            <h2>Delete</h2>
+            <p>Remove a person</p>
+            <form id="delete_user_form" method="POST" action="/people/delete/">
+                <div class="row" >
+                    <div class="four columns" >
+                        <label for="person_delete_id" >ID</label>
+                        <input class="u-full-width" name="id" id="person_delete_id" type="number" />
+                    </div>
+                </div>
+                <input class="submit-button button-primary" value="Erase identity" type="submit" />
+            </form>
+        </div>
+    </body>
+</html>

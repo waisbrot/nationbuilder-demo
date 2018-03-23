@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Contact</title>
+        <link href="/static/normalize.css" rel="stylesheet" type="text/css">
+        <link href="/static/skeleton.css" rel="stylesheet" type="text/css">
+        <link href="/static/style.css" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+        <div class="container" >
+            <h1>Record for contact</h1>
+            <pre><code>
+{% autoescape false %}
+{{pretty_json}}
+{% endautoescape %}
+            </code></pre>
+            <a class="button button-primary" href="/contact">Back</a>
+        </div>
+    </body>
+</html>
